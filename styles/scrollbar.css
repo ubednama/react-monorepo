@@ -1,41 +1,217 @@
-/* Custom Scrollbar Styles */
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: rgba(155, 155, 155, 0.5);
-    border-radius: 20px;
-    border: transparent;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(155, 155, 155, 0.7);
-  }
-  
-  /* For Firefox */
-  * {
+/* ===== SCROLLBAR STYLES ===== 
+   Progressive enhancement approach:
+   - WebKit scrollbars for Chrome, Safari, Edge
+   - Firefox properties for Firefox (newer versions)
+   - Graceful degradation for unsupported browsers
+*/
+
+/* ===== CUSTOM SCROLLBAR CLASS ===== */
+
+/* WebKit Browsers (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.6), rgba(147, 51, 234, 0.6));
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background 0.2s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.8));
+  background-clip: content-box;
+}
+
+/* Dark Theme - Custom Scrollbar */
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, rgba(100, 100, 100, 0.6), rgba(60, 60, 60, 0.8));
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, rgba(120, 120, 120, 0.8), rgba(80, 80, 80, 0.9));
+}
+
+/* ===== FIREFOX SUPPORT (Progressive Enhancement) ===== */
+/* These properties will be ignored by unsupported browsers */
+
+@supports (scrollbar-width: thin) {
+  .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+  }
+}
+
+@supports (scrollbar-color: auto) {
+  .custom-scrollbar {
+    scrollbar-color: rgba(59, 130, 246, 0.6) rgba(0, 0, 0, 0.05);
   }
   
-  /* For Edge and IE */
-  *::-ms-scrollbar {
-    width: 6px;
+  .dark .custom-scrollbar {
+    scrollbar-color: rgba(100, 100, 100, 0.6) rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ===== GLOBAL SCROLLBAR FALLBACK ===== */
+
+/* Light Theme - Global */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.4);
+  border-radius: 20px;
+  transition: background-color 0.2s ease;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(155, 155, 155, 0.6);
+}
+
+/* Dark Theme - Global */
+.dark html::-webkit-scrollbar-track,
+.dark body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.dark html::-webkit-scrollbar-thumb,
+.dark body::-webkit-scrollbar-thumb {
+  background-color: rgba(80, 80, 80, 0.6);
+}
+
+.dark html::-webkit-scrollbar-thumb:hover,
+.dark body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 100, 100, 0.8);
+}
+
+/* ===== PERFORMANCE OPTIMIZED TRANSITIONS ===== */
+/* Only apply transitions to interactive elements */
+
+button, 
+[role="button"], 
+.draggable, 
+.interactive,
+.hover-effect,
+.task-card,
+.modal,
+.dropdown {
+  transition-property: transform, opacity, box-shadow, background-color, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== ENHANCED DRAG EFFECTS ===== */
+
+/* Global drag state styles */
+body.is-dragging {
+  user-select: none;
+  cursor: grabbing !important;
+}
+
+body.is-dragging * {
+  pointer-events: auto !important;
+}
+
+/* Dragging item styles */
+.dragging-shadow {
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25), 
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(59, 130, 246, 0.3);
+  transform: rotate(2deg) scale(1.02);
+  z-index: 1000;
+  transition: none; /* Disable transitions during drag */
+}
+
+.dark .dragging-shadow {
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.6), 
+    0 0 0 1px rgba(80, 80, 80, 0.4),
+    0 0 20px rgba(100, 100, 100, 0.2);
+}
+
+/* Enhanced drag portal container */
+.drag-portal-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+  z-index: 10000 !important;
+  overflow: visible !important;
+}
+
+/* Ensure dragged items can move freely across the entire viewport */
+.drag-portal-container > * {
+  position: fixed !important;
+  pointer-events: auto !important;
+  z-index: 10001 !important;
+}
+
+/* Subtle glow for dark theme */
+.dark .dragging-shadow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, rgba(80, 80, 80, 0.1), rgba(60, 60, 60, 0.2));
+  border-radius: inherit;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ===== ACCESSIBILITY & REDUCED MOTION ===== */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  button, 
+  [role="button"], 
+  .draggable, 
+  .interactive,
+  .hover-effect,
+  .task-card,
+  .modal,
+  .dropdown {
+    transition-duration: 0.01ms !important;
   }
   
-  *::-ms-scrollbar-track {
-    background: transparent;
+  .dragging-shadow {
+    transform: none !important;
+  }
+}
+
+/* ===== HIGH CONTRAST MODE SUPPORT ===== */
+
+@media (prefers-contrast: high) {
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #000000;
+    border: 1px solid #ffffff;
   }
   
-  *::-ms-scrollbar-thumb {
-    background-color: rgba(155, 155, 155, 0.5);
-    border-radius: 20px;
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border: 1px solid #000000;
   }
-  
-  
+}

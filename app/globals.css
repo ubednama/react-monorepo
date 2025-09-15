@@ -49,43 +49,43 @@
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
+    --background: 0 0% 2%;
     --foreground: 0 0% 95%;
 
-    --card: 24 9.8% 10%;
+    --card: 0 0% 4%;
     --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 9%;
+    --popover: 0 0% 3%;
     --popover-foreground: 0 0% 95%;
 
     --primary: 142 72% 29%;
     --primary-foreground: 144.9 80.4% 10%;
 
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 0 0% 8%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 15%;
+    --muted: 0 0% 6%;
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 12 6.5% 15.1%;
+    --accent: 0 0% 7%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 85.7% 97.3%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
     --ring: 142 72% 29%;
 
-    /* Task Matrix Colors - Dark */
-    --do-first-bg: 151 100% 4%;
-    --do-first-text: 151 100% 50%;
-    --do-later-bg: 190 100% 4%;
-    --do-later-text: 190 100% 50%;
-    --delegate-bg: 45 100% 4%;
-    --delegate-text: 45 100% 50%;
-    --eliminate-bg: 0 100% 4%;
-    --eliminate-text: 0 100% 50%;
+    /* Enhanced Task Matrix Colors - Pitch Black Dark */
+    --do-first-bg: 151 50% 3%;
+    --do-first-text: 151 60% 60%;
+    --do-later-bg: 190 50% 3%;
+    --do-later-text: 190 60% 60%;
+    --delegate-bg: 45 50% 3%;
+    --delegate-text: 45 60% 60%;
+    --eliminate-bg: 0 50% 3%;
+    --eliminate-text: 0 60% 60%;
   }
 }
 
@@ -113,4 +113,157 @@
 /* Add smooth transitions for theme changes */
 * {
   @apply transition-colors duration-200;
+}
+
+/* Optimize animations for better performance */
+.animate-optimized {
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Enhanced drag and drop animations */
+@keyframes dropzone-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    border-color: rgba(59, 130, 246, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes dropzone-glow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Dragging styles */
+.is-dragging {
+  cursor: grabbing !important;
+  pointer-events: auto !important;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  position: fixed !important;
+  z-index: 999999 !important;
+  /* Ensure the item can move outside container bounds */
+  left: auto !important;
+  top: auto !important;
+  /* Disable any overflow restrictions */
+  overflow: visible !important;
+}
+
+/* Drop target styles */
+.drop-target {
+  animation: dropzone-pulse 2s infinite;
+  background: linear-gradient(
+    45deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(59, 130, 246, 0.05) 50%,
+    rgba(59, 130, 246, 0.1) 100%
+  );
+  background-size: 200% 200%;
+  animation: dropzone-glow 3s ease infinite;
+}
+
+/* Ensure all containers allow free movement during drag */
+[data-rbd-droppable-context-id] {
+  overflow: visible !important;
+}
+
+[data-rbd-drag-handle-draggable-id] {
+  overflow: visible !important;
+}
+
+/* Global drag portal styles */
+#drag-portal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+  z-index: 999999 !important;
+  overflow: visible !important;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Improved scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* Glass morphism utility */
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
