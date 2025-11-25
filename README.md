@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Drag and Drop Implementation Status
 
-## Getting Started
+## Overview
+The project currently uses `@dnd-kit` for drag-and-drop functionality. However, due to persistent issues with z-index stacking contexts and visual glitches where dragged items appear behind other sections, we have temporarily disabled this feature in favor of a "Click to Move" interaction.
 
-First, run the development server:
+## Current Implementation (Disabled)
+The drag-and-drop logic is implemented across three main components:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1.  **`TaskBoard.tsx`**:
+    *   Uses `DndContext` to manage the drag state.
+    *   Implements `DragOverlay` to render the dragged item on top of everything.
+    *   **Issue**: Despite `DragOverlay` and high z-index, there are still reports of items being obscured or interactions feeling "off".
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  **`TaskSection.tsx`**:
+    *   Uses `SortableContext` to define the drop zones.
+    *   **To Fix**: Ensure `overflow` properties on parent containers do not clip the dragged item.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3.  **`TaskItem.tsx`**:
+    *   Uses `useSortable` to make items draggable.
+    *   **To Fix**: The `transform` property needs to be applied carefully to avoid conflicting with layout transitions.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How to Re-enable Drag and Drop
+To re-enable the drag-and-drop functionality:
+1.  Uncomment the `DndContext` and `DragOverlay` in `TaskBoard.tsx`.
+2.  Uncomment `SortableContext` in `TaskSection.tsx`.
+3.  Uncomment `useSortable` hooks and logic in `TaskItem.tsx`.
 
-## Learn More
+## Alternative Approach: Click to Move
+As a fallback, we have implemented a dropdown menu on each task. Clicking a task (or a specific move icon) reveals a menu to instantly move the task to one of the four Eisenhower Matrix quadrants:
+*   Do First
+*   Do Later
+*   Delegate
+*   Eliminate
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This approach ensures usability while the complex drag-and-drop issues are investigated.

@@ -1,5 +1,7 @@
 import type { Task, TaskState, TaskStatus } from "@/types/tasks";
 
+export type { TaskStatus };
+
 // Task Board Types
 export interface TaskWithCompletion extends Task {
   completed?: boolean;
@@ -10,7 +12,7 @@ export interface TaskStateWithCompletion extends TaskState {
 }
 
 export interface TaskBoardProps {
-  // Add any props if needed
+  className?: string;
 }
 
 export interface TaskItemProps {

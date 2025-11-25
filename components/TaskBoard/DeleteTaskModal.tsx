@@ -54,7 +54,7 @@ export function DeleteTaskModal({ open, onOpenChange, onConfirm, onDoNotShowAgai
                 </div>
               </DialogHeader>
 
-              <motion.div 
+              <motion.div
                 className="flex flex-col items-center gap-6 py-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -68,7 +68,7 @@ export function DeleteTaskModal({ open, onOpenChange, onConfirm, onDoNotShowAgai
                 >
                   <AlertTriangle className="h-12 w-12 text-red-600 dark:text-red-400" />
                 </motion.div>
-                
+
                 <div className="text-center space-y-2">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                     Are you sure you want to delete this task?
@@ -78,7 +78,7 @@ export function DeleteTaskModal({ open, onOpenChange, onConfirm, onDoNotShowAgai
                   </p>
                 </div>
 
-                <motion.div 
+                <motion.div
                   className="flex items-center space-x-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700"
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 400 }}
@@ -89,30 +89,30 @@ export function DeleteTaskModal({ open, onOpenChange, onConfirm, onDoNotShowAgai
                     onCheckedChange={(checked) => setDoNotShowAgain(checked as boolean)}
                     className="data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600"
                   />
-                  <label 
-                    htmlFor="doNotShow" 
+                  <label
+                    htmlFor="doNotShow"
                     className="text-sm font-medium text-gray-700 dark:text-gray-300 cursor-pointer"
                   >
-                    Don't show this confirmation again
+                    Don&apos;t show this confirmation again
                   </label>
                 </motion.div>
 
                 <div className="flex gap-3 w-full pt-2">
-                  <motion.div 
-                    whileHover={{ scale: 1.02 }} 
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="flex-1"
                   >
-                    <Button 
-                      variant="outline" 
-                      onClick={() => onOpenChange(false)} 
+                    <Button
+                      variant="outline"
+                      onClick={() => onOpenChange(false)}
                       className="w-full border-2 hover:bg-gray-50 dark:hover:bg-gray-800"
                     >
                       Cancel
                     </Button>
                   </motion.div>
-                  <motion.div 
-                    whileHover={{ scale: 1.02 }} 
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="flex-1"
                   >

@@ -15,30 +15,30 @@ interface SelectSectionModalProps {
 }
 
 const sectionConfig = {
-  "do-first": { 
-    shortcut: "Shift + ↑", 
-    color: "from-emerald-500 to-green-600", 
+  "do-first": {
+    shortcut: "Shift + ↑",
+    color: "from-emerald-500 to-green-600",
     icon: ArrowUp,
     title: "Do First",
     description: "Urgent & Important"
   },
-  "do-later": { 
-    shortcut: "Shift + →", 
-    color: "from-blue-500 to-cyan-600", 
+  "do-later": {
+    shortcut: "Shift + →",
+    color: "from-blue-500 to-cyan-600",
     icon: ArrowRight,
     title: "Do Later",
     description: "Important but not urgent"
   },
-  delegate: { 
-    shortcut: "Shift + ←", 
-    color: "from-amber-500 to-yellow-600", 
+  delegate: {
+    shortcut: "Shift + ←",
+    color: "from-amber-500 to-yellow-600",
     icon: ArrowLeft,
     title: "Delegate",
     description: "Urgent but not important"
   },
-  eliminate: { 
-    shortcut: "Shift + ↓", 
-    color: "from-red-500 to-rose-600", 
+  eliminate: {
+    shortcut: "Shift + ↓",
+    color: "from-red-500 to-rose-600",
     icon: ArrowDown,
     title: "Eliminate",
     description: "Neither urgent nor important"
@@ -92,7 +92,7 @@ export function SelectSectionModal({ open, onOpenChange, onSelect, task }: Selec
                   </DialogTitle>
                 </div>
                 <DialogDescription className="text-gray-600 dark:text-gray-300">
-                  Select the priority level for: <span className="font-medium text-gray-800 dark:text-gray-200">"{task}"</span>
+                  Select the priority level for: <span className="font-medium text-gray-800 dark:text-gray-200">&quot;{task}&quot;</span>
                 </DialogDescription>
               </DialogHeader>
 
@@ -113,8 +113,8 @@ export function SelectSectionModal({ open, onOpenChange, onSelect, task }: Selec
                         }}
                         className={`
                           w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all duration-200
-                          ${selectedSection === section 
-                            ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50 dark:bg-indigo-950/30' 
+                          ${selectedSection === section
+                            ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50 dark:bg-indigo-950/30'
                             : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                           }
                           bg-gradient-to-r ${config.color} hover:shadow-lg group
@@ -131,7 +131,7 @@ export function SelectSectionModal({ open, onOpenChange, onSelect, task }: Selec
                             <div className="text-white/80 text-sm">{config.description}</div>
                           </div>
                         </div>
-                        
+
                         <div className="flex items-center gap-2 bg-black/20 backdrop-blur-sm px-3 py-2 rounded-lg">
                           <Keyboard className="h-4 w-4 text-white/80" />
                           <span className="text-white/90 text-sm font-mono">{config.shortcut}</span>
@@ -140,8 +140,8 @@ export function SelectSectionModal({ open, onOpenChange, onSelect, task }: Selec
                     )
                   }
                 )}
-                
-                <motion.div 
+
+                <motion.div
                   className="flex justify-end pt-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}

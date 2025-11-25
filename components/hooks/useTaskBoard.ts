@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { arrayMove } from "@dnd-kit/sortable";
+import type { DragOverEvent, DragEndEvent } from "@dnd-kit/core";
 import type { TaskStatus } from "@/types/tasks";
-import type { DragResult } from "@/types/dnd";
 import { saveState, loadState } from "@/utils/localStorage";
 import type { TaskWithCompletion, TaskStateWithCompletion } from "../types/tasks.types";
 
@@ -45,73 +46,106 @@ export const useTaskBoard = () => {
    *   - source: Where the drag started (section and position)
    *   - destination: Where the task was dropped (section and position)
    */
-  const handleDragEnd = (result: DragResult) => {
-    const { destination, source, draggableId } = result;
+  const findContainer = (id: string): TaskStatus | undefined => {
+    if (id in state) {
+      return id as TaskStatus;
+    }
+    return Object.keys(state).find((key) =>
+      state[key as TaskStatus]?.ids.includes(id)
+    ) as TaskStatus | undefined;
+  };
 
-    // If dropped outside any droppable area, return task to original position
-    if (!destination) {
+  const handleDragOver = (event: DragOverEvent) => {
+    const { active, over } = event;
+    const overId = over?.id;
+
+    if (!overId || active.id === overId) {
       return;
     }
 
-    // If dropped in the exact same spot, no changes needed
+    const activeContainer = findContainer(active.id as string);
+    const overContainer = findContainer(overId as string);
+
     if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
+      !activeContainer ||
+      !overContainer ||
+      activeContainer === overContainer
     ) {
       return;
     }
 
-    // Safety check: ensure we have the task in our state
-    if (!state.items[draggableId]) {
-      console.error(`Task ${draggableId} not found in state`);
+    setState((prev) => {
+      const overItems = prev[overContainer].ids;
+      const overIndex = overItems.indexOf(overId as string);
+
+      let newIndex;
+      if (overId in prev) {
+        newIndex = overItems.length + 1;
+      } else {
+        const isBelowOverItem =
+          over &&
+          active.rect.current.translated &&
+          active.rect.current.translated.top >
+            over.rect.top + over.rect.height;
+
+        const modifier = isBelowOverItem ? 1 : 0;
+        newIndex = overIndex >= 0 ? overIndex + modifier : overItems.length + 1;
+      }
+
+      return {
+        ...prev,
+        [activeContainer]: {
+          ...prev[activeContainer],
+          ids: [
+            ...prev[activeContainer].ids.filter((item) => item !== active.id),
+          ],
+        },
+        [overContainer]: {
+          ...prev[overContainer],
+          ids: [
+            ...prev[overContainer].ids.slice(0, newIndex),
+            active.id as string,
+            ...prev[overContainer].ids.slice(newIndex, prev[overContainer].ids.length),
+          ],
+        },
+        items: {
+          ...prev.items,
+          [active.id]: {
+            ...prev.items[active.id as string],
+            status: overContainer,
+          },
+        },
+      };
+    });
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    const activeContainer = findContainer(active.id as string);
+    const overContainer = findContainer(over?.id as string);
+
+    if (
+      !activeContainer ||
+      !overContainer ||
+      activeContainer !== overContainer
+    ) {
       return;
     }
 
-    setState((prevState) => {
-      // Create a new state object to maintain immutability
-      const newState = { ...prevState };
-      
-      // Get the source and destination section IDs
-      const sourceSection = source.droppableId as TaskStatus;
-      const destSection = destination.droppableId as TaskStatus;
-      
-      // Create new arrays for the affected sections
-      const sourceIds = [...newState[sourceSection].ids];
-      const destIds = sourceSection === destSection 
-        ? sourceIds // If same section, use the same array
-        : [...newState[destSection].ids]; // If different section, create new array
-      
-      // Remove the task from its original position
-      sourceIds.splice(source.index, 1);
-      
-      // Insert the task at its new position
-      destIds.splice(destination.index, 0, draggableId);
-      
-      // Update the state with new arrays
-      newState[sourceSection] = {
-        ...newState[sourceSection],
-        ids: sourceIds,
-      };
-      
-      // If moving to a different section, update destination
-      if (sourceSection !== destSection) {
-        newState[destSection] = {
-          ...newState[destSection],
-          ids: destIds,
-        };
-        
-        // Update the task's status to match its new section
-        newState.items = {
-          ...newState.items,
-          [draggableId]: {
-            ...newState.items[draggableId],
-            status: destSection,
-          },
-        };
-      }
-      
-      return newState;
-    });
+    if (!over) return;
+
+    const activeIndex = state[activeContainer].ids.indexOf(active.id as string);
+    const overIndex = state[overContainer].ids.indexOf(over.id as string);
+
+    if (activeIndex !== overIndex) {
+      setState((prev) => ({
+        ...prev,
+        [activeContainer]: {
+          ...prev[activeContainer],
+          ids: arrayMove(prev[activeContainer].ids, activeIndex, overIndex),
+        },
+      }));
+    }
   };
 
   const addTask = (taskText: string, section: TaskStatus) => {
@@ -187,16 +221,44 @@ export const useTaskBoard = () => {
     }));
   };
 
+  const moveTask = (taskId: string, newStatus: TaskStatus) => {
+    setState((prev) => {
+      const currentStatus = prev.items[taskId]?.status;
+      if (!currentStatus || currentStatus === newStatus) return prev;
+
+      return {
+        ...prev,
+        [currentStatus]: {
+          ...prev[currentStatus],
+          ids: prev[currentStatus].ids.filter((id) => id !== taskId),
+        },
+        [newStatus]: {
+          ...prev[newStatus],
+          ids: [...prev[newStatus].ids, taskId],
+        },
+        items: {
+          ...prev.items,
+          [taskId]: {
+            ...prev.items[taskId],
+            status: newStatus,
+          },
+        },
+      };
+    });
+  };
+
   return {
     state,
     editingTitle,
     setEditingTitle,
     isLoading,
     handleDragEnd,
+    handleDragOver,
     addTask,
     updateTask,
     deleteTask,
     toggleTaskCompletion,
     updateSectionTitle,
+    moveTask,
   };
 };
