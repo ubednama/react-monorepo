@@ -1,6 +1,7 @@
 # TextUtils
 
-![App Screenshot](PLACEHOLDER_FOR_SCREENSHOT_URL)
+<img width="1470" height="801" alt="Screenshot 2025-11-25 at 5 42 06 PM" src="https://github.com/user-attachments/assets/6934ec9a-5caf-4b51-ab1a-9830323c3f09" />
+
 
 **TextUtils** is a premium, modern text manipulation utility built for developers, writers, and content creators. It offers a distraction-free, immersive typing experience with powerful text transformation tools, real-time statistics, and a sophisticated aesthetic.
 
