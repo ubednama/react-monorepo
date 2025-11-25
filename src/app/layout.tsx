@@ -76,11 +76,6 @@ export const metadata: Metadata = {
     creator: '@ubednama',
     images: ['/og-image.png'], // Placeholder
   },
-  icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.png',
-    apple: '/favicon.png',
-  },
   category: 'Technology',
 };
 
