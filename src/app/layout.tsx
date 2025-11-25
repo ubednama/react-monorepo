@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Courier_Prime } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider, ThemeScript } from '@/components/theme-provider'
 
@@ -13,19 +13,20 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
+const courierPrime = Courier_Prime({
+  variable: '--font-courier-prime',
+  weight: ['400', '700'],
+  subsets: ['latin'],
+})
+
 export const metadata: Metadata = {
-  title: 'TextUtils - Professional Text Transformation Tool | Free Online Text Utilities',
-  description: 'Transform your text with TextUtils - a powerful, modern text manipulation tool featuring case conversion, text cleaning, formatting, and real-time statistics. Free online text utilities for developers, writers, and content creators.',
-  icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
-  },
+  title: 'TextUtils - Professional Text Transformation Tool',
+  description: 'Transform your text with TextUtils - a powerful, modern text manipulation tool featuring case conversion, text cleaning, formatting, and real-time statistics.',
   keywords: [
-    'text transformation', 
-    'case conversion', 
-    'text utilities', 
-    'text manipulation', 
+    'text transformation',
+    'case conversion',
+    'text utilities',
+    'text manipulation',
     'string processing',
     'camelCase converter',
     'snake_case converter',
@@ -41,7 +42,17 @@ export const metadata: Metadata = {
   authors: [{ name: 'ubednama', url: 'https://github.com/ubednama' }],
   creator: 'ubednama',
   publisher: 'TextCraft',
-  robots: 'index, follow',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -49,12 +60,26 @@ export const metadata: Metadata = {
     title: 'TextUtils - Professional Text Transformation Tool',
     description: 'Transform your text with powerful case conversion, cleaning, and formatting tools. Free online text utilities with real-time statistics.',
     siteName: 'TextUtils',
+    images: [
+      {
+        url: '/og-image.png', // Placeholder, user should add this file
+        width: 1200,
+        height: 630,
+        alt: 'TextUtils - Professional Text Transformation Tool',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'TextUtils - Professional Text Transformation Tool',
     description: 'Transform your text with powerful case conversion, cleaning, and formatting tools.',
     creator: '@ubednama',
+    images: ['/og-image.png'], // Placeholder
+  },
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
   },
   category: 'Technology',
 };
@@ -64,7 +89,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#0a0a0a',
+  themeColor: '#000000',
   colorScheme: 'dark',
 }
 
@@ -76,7 +101,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${courierPrime.variable} antialiased`}
       >
         <ThemeProvider>
           {children}

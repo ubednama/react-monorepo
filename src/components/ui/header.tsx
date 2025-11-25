@@ -29,22 +29,20 @@ export function Header({ onUndo, onRedo, canUndo, canRedo }: HeaderProps) {
   // }
 
   return (
-    <motion.header 
+    <motion.header
       className={`${isDarkMode ? 'bg-gray-900/95' : 'bg-white/95'} backdrop-blur-md border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} sticky top-0 z-50`}
       variants={itemVariants}
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.div 
+          <motion.div
             className="flex items-center space-x-3"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <div className={`w-8 h-8 ${isDarkMode ? 'bg-gradient-to-br from-slate-600 to-slate-800 border-slate-500' : 'bg-gradient-to-br from-gray-300 to-gray-500 border-gray-400'} rounded-lg flex items-center justify-center border`}>
-              <svg className={`w-5 h-5 ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`} fill="currentColor" viewBox="0 0 24 24">
-                <path d="M4 4h16v2H4V4zm0 4h10v2H4V8zm0 4h16v2H4v-2zm0 4h10v2H4v-2z"/>
-              </svg>
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden`}>
+              <img src="/logo.png" alt="TextUtils Logo" className="w-full h-full object-cover" />
             </div>
             <h1 className={`text-xl font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-800'}`}>
               TextUtils

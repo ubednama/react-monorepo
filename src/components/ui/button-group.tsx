@@ -1,6 +1,7 @@
 'use client'
 
 import { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface ButtonGroupProps {
@@ -15,9 +16,22 @@ export function ButtonGroup({ children, className, title }: ButtonGroupProps) {
       {title && (
         <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{title}</h3>
       )}
-      <div className="flex flex-wrap items-center gap-2 p-3 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
+      <motion.div
+        className="flex flex-wrap items-center gap-2 p-3 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.05
+            }
+          }
+        }}
+      >
         {children}
-      </div>
+      </motion.div>
     </div>
   )
 }

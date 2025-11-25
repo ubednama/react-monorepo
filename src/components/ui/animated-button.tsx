@@ -15,8 +15,9 @@ interface AnimatedButtonProps {
 }
 
 const buttonVariants = {
-  hover: { 
+  hover: {
     scale: 1.05,
+    boxShadow: "0px 0px 8px rgb(255, 255, 255, 0.2)",
     transition: { duration: 0.2 }
   },
   tap: { scale: 0.95 }
