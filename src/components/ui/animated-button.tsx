@@ -31,9 +31,9 @@ const variantStyles = {
 }
 
 const sizeStyles = {
-  sm: 'px-2 py-1 text-xs',
-  md: 'px-3 py-1.5 text-sm',
-  lg: 'px-4 py-2 text-base'
+  sm: 'px-3 py-2 text-sm sm:text-base min-h-[40px] sm:min-h-[44px]', // Touch-friendly
+  md: 'px-4 py-2 text-base min-h-[44px]',
+  lg: 'px-6 py-3 text-lg min-h-[48px]'
 }
 
 export function AnimatedButton({

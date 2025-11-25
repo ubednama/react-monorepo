@@ -164,9 +164,9 @@ export default function TextCraft() {
   // Statistics
   const stats = [
     { label: 'Words', value: text.trim() === '' ? 0 : text.trim().split(/\s+/).length },
-    { label: 'Characters', value: text.length },
+    { label: 'Characters', value: text.length, mobileLabel: 'Chars' },
     { label: 'Lines', value: text === '' ? 0 : text.split('\n').length },
-    { label: 'Paragraphs', value: text.trim() === '' ? 0 : text.trim().split(/\n\s*\n/).filter(p => p.trim().length > 0).length },
+    { label: 'Paragraphs', value: text.trim() === '' ? 0 : text.trim().split(/\n\s*\n/).filter(p => p.trim().length > 0).length, mobileLabel: 'Para' },
     { label: 'Spaces', value: (text.match(/\s/g) || []).length },
   ]
 
@@ -228,11 +228,11 @@ export default function TextCraft() {
         <main className="flex-1 flex flex-col min-h-0 relative z-10">
           {/* Text Area */}
           <motion.section
-            className="flex-1 p-6 min-h-0 relative"
+            className="flex-1 sm:p-6 min-h-0 relative"
             variants={itemVariants}
           >
             <div className="w-full h-full relative group">
-              <div className="absolute inset-0 bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-black/10 dark:border-white/10 transition-all duration-300 group-hover:border-black/20 dark:group-hover:border-white/20 group-hover:bg-black/10 dark:group-hover:bg-white/10 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-black/5 dark:bg-white/5 backdrop-blur-sm sm:rounded-xl border border-black/10 dark:border-white/10 transition-all duration-300 group-hover:border-black/20 dark:group-hover:border-white/20 group-hover:bg-black/10 dark:group-hover:bg-white/10 pointer-events-none"></div>
               <Textarea
                 value={text}
                 onChange={(e) => handleTextChange(e.target.value)}
@@ -271,29 +271,29 @@ export default function TextCraft() {
 
           {/* Action Buttons */}
           <motion.section
-            className="px-6 py-4 border-t border-gray-200 dark:border-gray-800 shrink-0"
+            className="md:px-6 md:py-4 border-t border-gray-200 dark:border-gray-800 shrink-0"
             variants={itemVariants}
           >
             {/* Case Conversion Group */}
             <ButtonGroup>
               {caseTransformations.map((transform) => (
-                <AnimatedButton key={transform.label} onClick={transform.action}>
+                <AnimatedButton key={transform.label} onClick={transform.action} size="sm">
                   {transform.label}
                 </AnimatedButton>
               ))}
 
-              <div className="h-6 w-px bg-gray-400 dark:bg-gray-300 mx-2"></div>
+              <div className="h-6 w-px bg-gray-400 dark:bg-gray-300 mx-0.5 sm:mx-2"></div>
 
               {codeTransformations.map((transform) => (
-                <AnimatedButton key={transform.label} onClick={transform.action}>
+                <AnimatedButton key={transform.label} onClick={transform.action} size="sm">
                   {transform.label}
                 </AnimatedButton>
               ))}
 
-              <div className="h-6 w-px bg-gray-400 dark:bg-gray-300 mx-2"></div>
+              <div className="h-6 w-px bg-gray-400 dark:bg-gray-300 mx-0.5 sm:mx-2"></div>
 
               {otherTransformations.map((transform) => (
-                <AnimatedButton key={transform.label} onClick={transform.action}>
+                <AnimatedButton key={transform.label} onClick={transform.action} size="sm">
                   {transform.label}
                 </AnimatedButton>
               ))}
@@ -302,23 +302,23 @@ export default function TextCraft() {
             {/* Remove/Clean Group */}
             <ButtonGroup>
               {cleanTransformations.map((transform) => (
-                <AnimatedButton key={transform.label} onClick={transform.action}>
+                <AnimatedButton key={transform.label} onClick={transform.action} size="sm">
                   {transform.label}
                 </AnimatedButton>
               ))}
 
-              <div className="h-6 w-px bg-gray-400 dark:bg-gray-300 mx-2"></div>
+              <div className="h-6 w-px bg-gray-400 dark:bg-gray-300 mx-0.5 sm:mx-2"></div>
 
               {removeTransformations.map((transform) => (
-                <AnimatedButton key={transform.label} onClick={transform.action}>
+                <AnimatedButton key={transform.label} onClick={transform.action} size="sm">
                   {transform.label}
                 </AnimatedButton>
               ))}
 
-              <div className="h-6 w-px bg-gray-300 mx-2"></div>
+              <div className="h-6 w-px bg-gray-300 mx-0.5 sm:mx-2"></div>
 
               {reverseTransformation.map((transform) => (
-                <AnimatedButton key={transform.label} onClick={transform.action}>
+                <AnimatedButton key={transform.label} onClick={transform.action} size="sm">
                   {transform.label}
                 </AnimatedButton>
               ))}
