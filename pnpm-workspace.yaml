@@ -1,4 +1,11 @@
 packages:
-  - 'apps/*'
-  - 'landing-pages/*'
-  - 'packages/*'
+  - apps/*
+  - landing-pages/*
+  - packages/*
+
+onlyBuiltDependencies:
+  - core-js
+  - core-js-pure
+  - esbuild
+  - sharp
+  - unrs-resolver
