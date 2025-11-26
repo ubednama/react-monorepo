@@ -1,0 +1,1 @@
+export const items = ["About us", "Services", "Use Cases", "Pricing", "Blog"]
