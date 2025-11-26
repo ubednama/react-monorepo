@@ -1,18 +1,18 @@
-# Refokuc Clone
-This project is a clone of Refokus, built using React with Vite and JavaScript. Refokus is a productivity tool that helps users manage their tasks and stay focused on their goals.
+# Refokus Landing Page
 
-## Technologies Used
-React: JavaScript library for building user interfaces.
+A high-performance, visually striking landing page for a creative agency, featuring smooth animations and scroll effects.
 
-Vite: Fast, opinionated web dev build tool that serves your code via native ES Module imports during development.
+## Features
+- **Smooth Scrolling**: Implemented with Locomotive Scroll.
+- **Animations**: Powered by Framer Motion.
+- **Glassmorphism**: Modern UI design trends.
 
-JavaScript: Programming language used for the project.
+## Tech Stack
+- **Framework**: React 18 + Vite
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion, Locomotive Scroll
 
-
-## Check App Here
-
-[Link](https://refokus-clone-chi.vercel.app/)
-
-
-## Sneak Peak
-![Screenshot](https://github.com/ubednama/Refokus-Clone/assets/61332446/9b6f3f56-84a2-4204-850d-c76ab1189ad6)
+## Scripts
+- `pnpm dev`: Start development server.
+- `pnpm build`: Build for production.
+- `pnpm start`: Preview production build.

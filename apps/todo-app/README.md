@@ -1,28 +1,19 @@
-# To-Do List Application
+# Todo App
 
-A simple and elegant To-Do List application built using React. This app allows users to add, delete, and mark tasks as complete while supporting dark mode.
+A comprehensive Todo application built with React 19 and Vite, styled with Tailwind CSS v4.
 
 ## Features
+- Add, edit, delete, and toggle tasks.
+- Persist tasks using local storage.
+- Filter tasks (All, Active, Completed).
+- Dark/Light mode support.
 
-- **Add Tasks**: Easily add tasks to your to-do list.
-- **Delete Tasks**: Remove tasks that are no longer needed.
-- **Mark as Complete**: Toggle the completion status of each task.
-- **Dark Mode Support**: Switch between light and dark themes for better user experience.
-- **Local Storage**: Persist tasks across sessions using local storage.
+## Tech Stack
+- **Framework**: React 19 + Vite
+- **Styling**: Tailwind CSS v4
+- **State Management**: React Hooks
 
-## Usage
-
-Add a new task by typing in the input field and clicking the "ADD" button.  
-Click on the task to mark it as complete.  
-Use the trash icon to delete a task from the list.  
-Toggle between light and dark mode using the theme toggle button at the top.  
-
-## Screenshots
-![Screenshot](https://github.com/user-attachments/assets/cd158b24-4a99-4018-a8db-627b3d73eb4e)
-
-
-## Acknowledgements
-
-[React](https://reactjs.org/) for the frontend framework.  
-[Tailwind CSS](https://tailwindcss.com/) for styling.  
-[Lucide Icons](https://lucide.dev/) for the icons.  
+## Scripts
+- `pnpm dev`: Start development server.
+- `pnpm build`: Build for production.
+- `pnpm start`: Preview production build.
