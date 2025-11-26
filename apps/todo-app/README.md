@@ -2,6 +2,8 @@
 
 A comprehensive Todo application built with React 19 and Vite, styled with Tailwind CSS v4.
 
+[**Live Demo**](https://todo-app-mu-rouge.vercel.app/)
+
 ## Features
 - Add, edit, delete, and toggle tasks.
 - Persist tasks using local storage.

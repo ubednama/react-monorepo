@@ -2,6 +2,8 @@
 
 A task management application implementing the Eisenhower Matrix method for prioritizing tasks. Built with Next.js 16 and Tailwind CSS v4.
 
+[**Live Demo**](https://matrix-tasks.vercel.app/)
+
 ## Features
 - **Eisenhower Matrix**: Categorize tasks into Do First, Schedule, Delegate, and Eliminate.
 - **Drag and Drop**: Reorder tasks within quadrants.

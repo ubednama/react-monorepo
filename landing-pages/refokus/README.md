@@ -2,6 +2,8 @@
 
 A high-performance, visually striking landing page for a creative agency, featuring smooth animations and scroll effects.
 
+[**Live Demo**](https://refokus-rouge.vercel.app/)
+
 ## Features
 - **Smooth Scrolling**: Implemented with Locomotive Scroll.
 - **Animations**: Powered by Framer Motion.

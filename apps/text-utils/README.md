@@ -2,6 +2,8 @@
 
 A utility application for various text manipulation tasks, built with Next.js 16 and Tailwind CSS v4.
 
+[**Live Demo**](https://text-utils-two-kohl.vercel.app/)
+
 ## Features
 - **Text Analysis**: Word count, character count, reading time.
 - **Text Transformation**: Uppercase, lowercase, capitalization.
