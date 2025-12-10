@@ -1,0 +1,11 @@
+{
+  "name": "@repo/next-config",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./next.config.ts"
+  },
+  "dependencies": {
+    "next": "16.0.7"
+  }
+}

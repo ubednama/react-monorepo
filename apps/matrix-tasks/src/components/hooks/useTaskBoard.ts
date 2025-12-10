@@ -1,9 +1,10 @@
+"use client";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { arrayMove } from "@dnd-kit/sortable";
 import type { DragOverEvent, DragEndEvent } from "@dnd-kit/core";
 import type { TaskStatus } from "@/types/tasks";
-import { saveState, loadState } from "@/utils/localStorage";
+import { saveState, loadState } from "@/lib/localStorage";
 import type { TaskWithCompletion, TaskStateWithCompletion } from "../types/tasks.types";
 
 const initialState: TaskStateWithCompletion = {
@@ -47,12 +48,16 @@ export const useTaskBoard = () => {
    *   - destination: Where the task was dropped (section and position)
    */
   const findContainer = (id: string): TaskStatus | undefined => {
-    if (id in state) {
+    if (id in state.items) {
+      return state.items[id]?.status;
+    }
+
+    const sections: TaskStatus[] = ["do-first", "do-later", "delegate", "eliminate"];
+    if (sections.includes(id as TaskStatus)) {
       return id as TaskStatus;
     }
-    return Object.keys(state).find((key) =>
-      state[key as TaskStatus]?.ids.includes(id)
-    ) as TaskStatus | undefined;
+
+    return sections.find((key) => state[key].ids.includes(id));
   };
 
   const handleDragOver = (event: DragOverEvent) => {

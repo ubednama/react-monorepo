@@ -1,0 +1,307 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 20%; /* Softened from 3.9% (black) to ~20% (dark grey) */
+
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 20%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 20%;
+
+  --primary: 142 72% 29%;
+  --primary-foreground: 355.7 100% 97.3%;
+
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 142 72% 29%;
+
+  --radius: 0.5rem;
+
+  /* Task Matrix Colors - Light */
+  --do-first-bg: 151 100% 98%;
+  --do-first-text: 151 100% 29%;
+  --do-later-bg: 190 100% 98%;
+  --do-later-text: 190 100% 29%;
+  --delegate-bg: 45 100% 98%;
+  --delegate-text: 45 100% 29%;
+  --eliminate-bg: 0 100% 98%;
+  --eliminate-text: 0 100% 29%;
+}
+
+.dark {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 95%;
+
+  --card: 0 0% 3%;
+  --card-foreground: 0 0% 95%;
+
+  --popover: 0 0% 3%;
+  --popover-foreground: 0 0% 95%;
+
+  --primary: 142 72% 29%;
+  --primary-foreground: 144.9 80.4% 10%;
+
+  --secondary: 0 0% 8%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 0 0% 6%;
+  --muted-foreground: 240 5% 64.9%;
+
+  --accent: 0 0% 7%;
+  --accent-foreground: 0 0% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 85.7% 97.3%;
+
+  --border: 0 0% 15%;
+  --input: 0 0% 12%;
+  --ring: 142 72% 29%;
+
+  /* Enhanced Task Matrix Colors - Pitch Black Dark */
+  --do-first-bg: 151 50% 3%;
+  --do-first-text: 151 60% 60%;
+  --do-later-bg: 190 50% 3%;
+  --do-later-text: 190 60% 60%;
+  --delegate-bg: 45 50% 3%;
+  --delegate-text: 45 60% 60%;
+  --eliminate-bg: 0 50% 3%;
+  --eliminate-text: 0 60% 60%;
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+    outline-color: hsl(var(--ring));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Modern thin cursor */
+  input,
+  textarea {
+    caret-color: #00c2a9;
+    caret-width: thin;
+  }
+}
+
+/* Theme transition */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Add smooth transitions for theme changes */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Optimize animations for better performance */
+.animate-optimized {
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Enhanced drag and drop animations */
+@keyframes dropzone-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    border-color: rgba(59, 130, 246, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes dropzone-glow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Dragging styles for the item being dragged */
+.is-dragging-item {
+  cursor: grabbing !important;
+  pointer-events: auto !important;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  position: fixed !important;
+  z-index: 999999 !important;
+  left: auto !important;
+  top: auto !important;
+  overflow: visible !important;
+}
+
+/* Style applied to body when dragging */
+.body-dragging {
+  cursor: grabbing !important;
+  user-select: none;
+  /* Do NOT apply position: fixed here to avoid layout shift */
+  overflow: hidden !important; 
+}
+
+/* Drop target styles */
+.drop-target {
+  animation: dropzone-pulse 2s infinite;
+  background: linear-gradient(
+    45deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(59, 130, 246, 0.05) 50%,
+    rgba(59, 130, 246, 0.1) 100%
+  );
+  background-size: 200% 200%;
+  animation: dropzone-glow 3s ease infinite;
+}
+
+/* Ensure all containers allow free movement during drag */
+[data-rbd-droppable-context-id] {
+  overflow: visible !important;
+}
+
+[data-rbd-drag-handle-draggable-id] {
+  overflow: visible !important;
+}
+
+/* Global drag portal styles */
+#drag-portal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+  z-index: 999999 !important;
+  overflow: visible !important;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Improved scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* Glass morphism utility */
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
