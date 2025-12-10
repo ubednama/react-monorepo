@@ -75,11 +75,11 @@ export const TaskCard: React.FC<ExtendedTaskItemProps & {
             "rounded-lg flex items-center justify-between p-3 border shadow-sm",
             task.completed && "opacity-50",
             "hover:shadow-md mb-2 transition-all duration-200",
-            isDragging && "opacity-30", // Fade original when dragging
+            // isDragging controlled via motion animate prop
             isOverlay && "opacity-100! shadow-xl scale-105 rotate-2" // Style the overlay
           )}
           initial={!isOverlay ? { opacity: 0, y: 5 } : undefined}
-          animate={!isOverlay ? { opacity: 1, y: 0 } : undefined}
+          animate={!isOverlay ? { opacity: isDragging ? 0.35 : 1, y: 0, scale: isDragging ? 0.98 : 1 } : undefined}
           exit={!isOverlay ? { opacity: 0, y: -5, scale: 0.98 } : undefined}
           transition={{ duration: 0.15 }}
         >
