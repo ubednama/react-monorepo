@@ -1,6 +1,6 @@
 # Positivus Landing Page
 
-A modern, responsive landing page for a digital marketing agency, built with React and Vite.
+A modern, responsive landing page for a digital marketing agency, built with Next.js 16.
 
 [**Live Demo**](https://positivus-ebon-one.vercel.app/)
 
@@ -10,7 +10,7 @@ A modern, responsive landing page for a digital marketing agency, built with Rea
 - **Fast Loading**: Powered by Vite.
 
 ## Tech Stack
-- **Framework**: React 18 + Vite
+- **Framework**: Next.js 16 (App Router)
 - **Styling**: Tailwind CSS v4
 
 ## Scripts

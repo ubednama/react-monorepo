@@ -7,10 +7,10 @@ A high-performance, visually striking landing page for a creative agency, featur
 ## Features
 - **Smooth Scrolling**: Implemented with Locomotive Scroll.
 - **Animations**: Powered by Framer Motion.
-- **Glassmorphism**: Modern UI design trends.
+- **Performance**: Optimized with Next.js App Router and Server Components.
 
 ## Tech Stack
-- **Framework**: React 18 + Vite
+- **Framework**: Next.js 16 (App Router)
 - **Styling**: Tailwind CSS v4
 - **Animations**: Framer Motion, Locomotive Scroll
 

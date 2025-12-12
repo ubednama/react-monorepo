@@ -1,6 +1,6 @@
 # Todo App
 
-A comprehensive Todo application built with React 19 and Vite, styled with Tailwind CSS v4.
+A comprehensive Todo application built with Next.js 16, styled with Tailwind CSS v4.
 
 [**Live Demo**](https://todo-app-mu-rouge.vercel.app/)
 
@@ -11,7 +11,7 @@ A comprehensive Todo application built with React 19 and Vite, styled with Tailw
 - Dark/Light mode support.
 
 ## Tech Stack
-- **Framework**: React 19 + Vite
+- **Framework**: Next.js 16 (App Router)
 - **Styling**: Tailwind CSS v4
 - **State Management**: React Hooks
 
