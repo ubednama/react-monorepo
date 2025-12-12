@@ -20,7 +20,7 @@ const courierPrime = Courier_Prime({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://textutils.dev'),
+  metadataBase: new URL('https://text-utils-two-kohl.vercel.app/'),
   title: 'TextUtils - Professional Text Transformation Tool',
   description: 'Transform your text with TextUtils - a powerful, modern text manipulation tool featuring case conversion, text cleaning, formatting, and real-time statistics.',
   keywords: [
@@ -57,13 +57,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://textutils.dev',
+    url: 'https://text-utils-two-kohl.vercel.app/',
     title: 'TextUtils - Professional Text Transformation Tool',
     description: 'Transform your text with TextUtils - a powerful, modern text manipulation tool featuring case conversion, text cleaning, formatting, and real-time statistics.',
     siteName: 'TextUtils',
     images: [
       {
-        url: '/logo.png',
+        url: '/og-image.png',
         width: 512,
         height: 512,
         alt: 'TextUtils - Professional Text Transformation Tool',

@@ -6,9 +6,9 @@ import { Providers } from "./providers";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://taskmatrix.app'),
-  title: "TaskMatrix | Smart Eisenhower Matrix Task Manager",
-  description: "Boost your productivity with TaskMatrix. The ultimate Eisenhower Matrix app to prioritize tasks, eliminate distractions, and focus on what matters most. Free, private, and simple.",
+  metadataBase: new URL('https://matrix-tasks.vercel.app'),
+  title: "Matrix Tasks | Smart Eisenhower Matrix Task Manager",
+  description: "Boost your productivity with Matrix Tasks. The ultimate Eisenhower Matrix app to prioritize tasks, eliminate distractions, and focus on what matters most. Free, private, and simple.",
   keywords: [
     "Eisenhower Matrix",
     "Task Management",
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     "Task Prioritization",
     "Focus Tool"
   ],
-  authors: [{ name: "TaskMatrix Team" }],
-  creator: "TaskMatrix",
+  authors: [{ name: "Matrix Tasks Team" }],
+  creator: "Matrix Tasks",
   icons: {
     icon: "/matrix-logo.svg",
     shortcut: "/matrix-logo.svg",
@@ -30,22 +30,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://taskmatrix.app",
-    title: "TaskMatrix | Master Your Priorities",
+    url: "https://matrix-tasks.vercel.app",
+    title: "Matrix Tasks | Master Your Priorities",
     description: "Stop drowning in tasks. Start managing them with the proven Eisenhower method. Simple, fast, and effective.",
-    siteName: "TaskMatrix",
+    siteName: "Matrix Tasks",
     images: [
       {
-        url: "/og-image.png", // Assuming an OG image exists or will exist, standard naming
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "TaskMatrix App Interface Preview",
+        alt: "Matrix Tasks App Interface Preview",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TaskMatrix - Prioritize Like a Pro",
+    title: "Matrix Tasks - Prioritize Like a Pro",
     description: "The smartest way to organize your tasks using the Eisenhower Matrix.",
     images: ["/og-image.png"],
   },

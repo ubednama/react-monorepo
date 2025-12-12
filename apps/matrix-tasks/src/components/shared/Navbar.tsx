@@ -41,7 +41,7 @@ const Navbar = () => {
             >
               <Image
                 src="/matrix-logo.svg"
-                alt="TaskMatrix Logo"
+                alt="Matrix Tasks Logo"
                 width={32}
                 height={32}
                 className="size-8 drop-shadow-sm"
@@ -49,7 +49,7 @@ const Navbar = () => {
             </motion.div>
           </div>
           <span className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">
-            TaskMatrix
+            Matrix Tasks
           </span>
         </motion.div>
         <div className="flex items-center gap-2">
