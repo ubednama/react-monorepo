@@ -5,7 +5,7 @@ export const Footer = () => {
     <footer className='bg-stone-900 dark:bg-black text-white py-2 px-2'>
       <div className='flex items-center justify-between'>
         <div className='text-xs'>
-          Copyright &copy; MyTodoList
+          Copyright &copy; Todo App
         </div>
         <div className='flex items-center text-sm absolute left-1/2 transform -translate-x-1/2'>
           Made with ❤️ by
