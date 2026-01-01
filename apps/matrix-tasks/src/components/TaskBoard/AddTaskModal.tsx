@@ -15,30 +15,30 @@ interface AddTaskModalProps {
 
 const sectionConfig = {
   "do-first": {
-    shortcut: "Cmd/Ctrl + ←",
+    shortcut: "Cmd/Ctrl + ↑",
     color: "from-red-500 to-rose-600",
-    icon: ArrowLeft,
+    icon: ArrowUp,
     title: "Do First",
     description: "Urgent & Important"
   },
   "do-later": {
-    shortcut: "Cmd/Ctrl + ↑",
+    shortcut: "Cmd/Ctrl + →",
     color: "from-blue-500 to-cyan-600",
-    icon: ArrowUp,
+    icon: ArrowRight,
     title: "Do Later",
     description: "Important but not urgent"
   },
   delegate: {
-    shortcut: "Cmd/Ctrl + ↓",
+    shortcut: "Cmd/Ctrl + ←",
     color: "from-amber-500 to-yellow-600",
-    icon: ArrowDown,
+    icon: ArrowLeft,
     title: "Delegate",
     description: "Urgent but not important"
   },
   eliminate: {
-    shortcut: "Cmd/Ctrl + →",
+    shortcut: "Cmd/Ctrl + ↓",
     color: "from-slate-500 to-gray-600",
-    icon: ArrowRight,
+    icon: ArrowDown,
     title: "Eliminate",
     description: "Neither urgent nor important"
   },
@@ -100,10 +100,10 @@ export function AddTaskModal({ open, onOpenChange, onSubmit }: AddTaskModalProps
 
       if (isCmdOrCtrl) {
         let newSection: TaskStatus | null = null
-        if (e.key === "ArrowLeft") newSection = "do-first"
-        else if (e.key === "ArrowUp") newSection = "do-later"
-        else if (e.key === "ArrowDown") newSection = "delegate"
-        else if (e.key === "ArrowRight") newSection = "eliminate"
+        if (e.key === "ArrowUp") newSection = "do-first"
+        else if (e.key === "ArrowRight") newSection = "do-later"
+        else if (e.key === "ArrowLeft") newSection = "delegate"
+        else if (e.key === "ArrowDown") newSection = "eliminate"
 
         if (newSection) {
           e.preventDefault()
@@ -116,7 +116,7 @@ export function AddTaskModal({ open, onOpenChange, onSubmit }: AddTaskModalProps
             setTimeout(() => {
               onSubmit(trimmedTask, newSection!)
               onOpenChange(false)
-            }, 400) // Short delay to show selection animation
+            }, 100) // Short delay to show selection animation
           }
         } else if (e.key === "Enter") {
           e.preventDefault()
