@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Icons } from '@/components/features/Icons'
 import { AnimatedButton } from '@/components/ui/AnimatedButton'
@@ -17,16 +17,19 @@ interface HeaderProps {
 }
 
 export function Header({ onUndo, onRedo, canUndo, canRedo }: HeaderProps) {
-  const [showSettings, setShowSettings] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
+    // delay state update to avoid synchronous render warning
+    const timer = setTimeout(() => {
+      setMounted(true)
+    }, 0)
+    return () => clearTimeout(timer)
   }, [])
 
-  const isDarkMode = mounted && theme === 'dark'
-  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
+  const isDarkMode = mounted && resolvedTheme === 'dark'
+  const toggleTheme = () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
 
   // Animation variants for the header
   const itemVariants = {
@@ -142,7 +145,7 @@ export function Header({ onUndo, onRedo, canUndo, canRedo }: HeaderProps) {
               className={`p-2 ${isDarkMode ? 'text-slate-400 hover:text-slate-200 hover:bg-slate-800' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'}`}
               aria-label="Toggle dark mode"
             >
-              {isDarkMode ? <Icons.Sun className="w-4 h-4" /> : <Icons.Moon className="w-4 h-4" />}
+              {resolvedTheme === 'dark' ? <Icons.Sun className="w-4 h-4" /> : <Icons.Moon className="w-4 h-4" />}
             </AnimatedButton>
           </div>
         </div>

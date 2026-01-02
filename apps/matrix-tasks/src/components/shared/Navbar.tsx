@@ -10,7 +10,7 @@ import DigitalClock from "./DigitalClock";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -83,17 +83,17 @@ const Navbar = () => {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
             className="rounded-lg h-9 w-9 p-0 flex items-center justify-center bg-gray-100/80 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 backdrop-blur-sm transition-all duration-200"
           >
             <motion.div
-              key={theme}
+              key={resolvedTheme}
               initial={{ rotate: -180, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="flex items-center justify-center"
             >
-              {theme === "dark" ? (
+              {resolvedTheme === "dark" ? (
                 <Sun className="h-5 w-5 text-yellow-500" />
               ) : (
                 <Moon className="h-5 w-5 text-blue-600" />
@@ -113,17 +113,17 @@ const Navbar = () => {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
             className="rounded-lg h-9 w-9 p-0 flex items-center justify-center bg-gray-100/80 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 backdrop-blur-sm"
           >
             <motion.div
-              key={theme}
+              key={resolvedTheme}
               initial={{ rotate: -180, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="flex items-center justify-center"
             >
-              {theme === "dark" ? (
+              {resolvedTheme === "dark" ? (
                 <Sun className="h-4 w-4 text-yellow-500" />
               ) : (
                 <Moon className="h-4 w-4 text-blue-600" />

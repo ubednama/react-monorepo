@@ -6,7 +6,7 @@ import { Button } from "@repo/ui";
 
 
 const ThemeToggleButton = () => {
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -21,9 +21,9 @@ const ThemeToggleButton = () => {
         <div className='justify-self-end p-8'>
             <Button
                 variant="ghost"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                 className='rounded text-white bg-transparent hover:bg-transparent hover:text-white'>
-                {theme === 'dark' ? <Sun className='size-8 sm:size-10' /> : <Moon className='size-8 sm:size-10' />}
+                {resolvedTheme === 'dark' ? <Sun className='size-8 sm:size-10' /> : <Moon className='size-8 sm:size-10' />}
             </Button>
         </div>
     );
